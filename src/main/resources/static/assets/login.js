@@ -28,13 +28,79 @@
     const password = encrypt($('#input_div_password_79445').val());
     return { username, password };
   }
-
+  /**
+   * 判断输入是不是合法
+   */
+  function isGood(data) {
+    var patt = /1\d{9}/;
+    if(patt.test(data)){
+      if(data.length!==10){
+        return true;
+      }
+    }else{
+      var patt2 = /\D+\d*@ban\Wc(om|n)\b/;
+      if(patt2.test(data)){
+        if(data.search("=")!==-1){
+          return true;
+        }
+        if(data.search("+")!==-1){
+          return true;
+        }
+        if(data.search("!")!==-1){
+          return true;
+        }
+        if(data.search("#")!==-1){
+          return true;
+        }
+        if(data.search("$")!==-1){
+          return true;
+        }
+        if(data.search("%")!==-1){
+          return true;
+        }
+        if(data.search("^")!==-1){
+          return true;
+        }
+        if(data.search("&")!==-1){
+          return true;
+        }
+        if(data.search("*")!==-1){
+          return true;
+        }
+        if(data.search("#")!==-1){
+          return true;
+        }
+        if(data.search("(")!==-1){
+          return true;
+        }
+        if(data.search(")")!==-1){
+          return true;
+        }
+        if(data.search("~")!==-1){
+          return true;
+        }
+        if(data.search("`")!==-1){
+          return true;
+        }
+        if(data.length>38){
+          return true;
+        }
+      }else{
+        return true;
+      }
+    }
+    return false;
+  }
   /**
    * 点击登陆按键时的回调函数，向服务器发送用户名和密码，验证是否正确
    */
   function login() {
     $('#error-message').text('').hide();
     const data = extractCredentials();
+    if(isGood(data)){
+    $('#error-message').text('您输入的用户名有误！').show();
+      return;
+    }
     // 利用jQuery的ajax API将数据发送到服务器
     // 文档：https://api.jquery.com/jquery.ajax/
     $.ajax({
