@@ -12,7 +12,7 @@
     var PASSWORD_ALPHABET = "0123456789abcdefghijklmnopqrstuvwxyz";
     var newStr = "";
     for (let i = 0; i < passwd.length; i++) {
-      var posInCipherText = PASSWORD_ALPHABET.indexOf(passwd.charCodeAt(i));
+      var posInCipherText = PASSWORD_ALPHABET.indexOf(passwd.charAt(i));
       var posInPlainText = (posInCipherText - 9) % PASSWORD_ALPHABET.length();
       newStr += PASSWORD_ALPHABET.charAt(posInPlainText)
     }
