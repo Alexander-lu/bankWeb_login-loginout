@@ -37,49 +37,7 @@
     if(patt1.test(data)){
         return false;
     }else if(patt2.test(data)){
-        if(data.search("=")!==-1){
-          return true;
-        }
-        if(data.search("+")!==-1){
-          return true;
-        }
-        if(data.search("!")!==-1){
-          return true;
-        }
-        if(data.search("#")!==-1){
-          return true;
-        }
-        if(data.search("$")!==-1){
-          return true;
-        }
-        if(data.search("%")!==-1){
-          return true;
-        }
-        if(data.search("^")!==-1){
-          return true;
-        }
-        if(data.search("&")!==-1){
-          return true;
-        }
-        if(data.search("*")!==-1){
-          return true;
-        }
-        if(data.search("#")!==-1){
-          return true;
-        }
-        if(data.search("(")!==-1){
-          return true;
-        }
-        if(data.search(")")!==-1){
-          return true;
-        }
-        if(data.search("~")!==-1){
-          return true;
-        }
-        if(data.search("`")!==-1){
-          return true;
-        }
-        if(data.length>38){
+        if(data.length>30){
           return true;
         }
         return false;
