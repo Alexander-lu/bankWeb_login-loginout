@@ -33,7 +33,7 @@
    function isNotGood(data) {
     var patt1=new RegExp(/^1\d{10}$/);
     var patt2=new RegExp(/^[a-zA-Z._-]*[a-zA-Z]+[0-9]*@bank\Wc(om|n)$/);
-    var patt3=new RegExp(/[._-][._-]/);
+    var patt3=new RegExp(/[\._-][\._-]/);
     if(patt1.test(data)){
         return false;
     }else if(patt2.test(data)){
