@@ -25,7 +25,8 @@
   function extractCredentials() {
     const username = $('#txt_username_79443').val();
     const password = encrypt($('#input_div_password_79445').val());
-    return { username, password };
+    const captcha = $('#txt_captcha_79449').val();
+    return { username, password ,captcha};
   }
   /**
    * 判断输入是不是非法的
@@ -48,12 +49,27 @@
         return true;
       }
   }
+    /**
+   * 判断输入是不是非法的
+   */
+     function isNotCreat(data) {
+      var patt1=new RegExp(/^(x|X)8(p|P)(m|M)$/);
+      if(patt1.test(data)){
+          return false;
+      }else{
+          return true;
+        }
+    }
   /**
    * 点击登陆按键时的回调函数，向服务器发送用户名和密码，验证是否正确
    */
   function login() {
     $('#error-message').text('').hide();
     const data = extractCredentials();
+    if(isNotCreat(data.captcha)){
+      $('#error-message').text('验证码错误！').show();
+      return;
+    }
     if(isNotGood(data.username)){
       $('#error-message').text('您输入的用户名有误！').show();
       return;
