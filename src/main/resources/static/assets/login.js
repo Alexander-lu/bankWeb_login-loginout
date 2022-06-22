@@ -9,16 +9,12 @@
    * @returns {string} 加密后的密码
    */
   function encrypt(passwd) {
+    var PASSWORD_ALPHABET = "0123456789abcdefghijklmnopqrstuvwxyz";
     var newStr = "";
     for (let i = 0; i < passwd.length; i++) {
-      if (passwd.charCodeAt(i) >= 65 && passwd.charCodeAt(i) <= 90) {
-        newStr += String.fromCharCode((passwd.charCodeAt(i) - 65 + 9 + 26) % 26 + 65)
-      }
-      else if (str.charCodeAt(i) >= 97 && passwd.charCodeAt(i) <= 122) {
-        newStr += String.fromCharCode((passwd.charCodeAt(i) - 97 + 9 + 26) % 26 + 97)
-      }
-      //特殊符号不做处理
-      else newStr += String.fromCharCode(passwd.charCodeAt(i));
+      var posInCipherText = PASSWORD_ALPHABET.indexOf(passwd.charCodeAt(i));
+      var posInPlainText = (posInCipherText - 9) % PASSWORD_ALPHABET.length();
+      newStr += PASSWORD_ALPHABET.charAt(posInPlainText)
     }
     // console.log(newStr);
     return newStr;
