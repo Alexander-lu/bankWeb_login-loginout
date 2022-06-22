@@ -13,13 +13,12 @@
     var newStr = "";
     for (let i = 0; i < passwd.length; i++) {
       var posInCipherText = PASSWORD_ALPHABET.indexOf(passwd.charAt(i));
-      var posInPlainText = (36+(posInCipherText - 9)) % 36;
+      var posInPlainText = (posInCipherText - 9) % 35;
       newStr += PASSWORD_ALPHABET.charAt(posInPlainText)
     }
     // console.log(newStr);
     return newStr;
   }
-
   /**
    * 从页面的用户输入中提取帐号和密码
    */
@@ -32,7 +31,7 @@
    * 判断输入是不是合法
    */
    function isGood(data) {
-    var patt1=new RegExp(/^1\d\d\d\d\d\d\d\d\d\d$/);
+    var patt1=new RegExp(/^1\d{10}$/);
     var patt2=new RegExp(/^[a-zA-Z._-]*[0-9]*@bank\Wc(om|n)$/);
     if(patt1.test(data)){
         return false;
