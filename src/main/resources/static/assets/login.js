@@ -28,9 +28,9 @@
     return { username, password };
   }
   /**
-   * 判断输入是不是合法
+   * 判断输入是不是非法的
    */
-   function isGood(data) {
+   function isNotGood(data) {
     var patt1=new RegExp(/^1\d{10}$/);
     var patt2=new RegExp(/^[a-zA-Z._-]*[a-zA-Z]+[0-9]*@bank\Wc(om|n)$/);
     var patt3=new RegExp(/[._-][._-]/);
@@ -54,7 +54,7 @@
   function login() {
     $('#error-message').text('').hide();
     const data = extractCredentials();
-    if(isGood(data.username)){
+    if(isNotGood(data.username)){
       $('#error-message').text('您输入的用户名有误！').show();
       return;
     }else{
