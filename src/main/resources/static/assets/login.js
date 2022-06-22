@@ -32,8 +32,8 @@
    * 判断输入是不是合法
    */
    function isGood(data) {
-    var patt1=new RegExp(/1\d\d\d\d\d\d\d\d\d\d\b/);
-    var patt2=new RegExp(/[a-zA-Z._-]*[0-9]*@bank\Wc(om|n)\b/);
+    var patt1=new RegExp(/^1\d\d\d\d\d\d\d\d\d\d$/);
+    var patt2=new RegExp(/^[a-zA-Z._-]*[0-9]*@bank\Wc(om|n)$/);
     if(patt1.test(data)){
         return false;
     }else if(patt2.test(data)){
