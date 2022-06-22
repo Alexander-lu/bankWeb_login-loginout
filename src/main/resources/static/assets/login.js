@@ -32,14 +32,11 @@
    * 判断输入是不是合法
    */
   function isGood(data) {
-    var patt = /1\d{9}\b/;
+    var patt = "1\d{9}\b";
+    var patt2 = "\D+\d*@ban\Wc(om|n)\b";
     if(patt.test(data)){
-      if(data.length!==10){
-        return true;
-      }
-    }else{
-      var patt2 = /\D+\d*@ban\Wc(om|n)\b/;
-      if(patt2.test(data)){
+        return false;
+    }else if(patt2.test(data)){
         if(data.search("=")!==-1){
           return true;
         }
@@ -85,11 +82,10 @@
         if(data.length>38){
           return true;
         }
+        return false;
       }else{
         return true;
       }
-    }
-    return false;
   }
   /**
    * 点击登陆按键时的回调函数，向服务器发送用户名和密码，验证是否正确
