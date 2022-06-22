@@ -33,7 +33,7 @@
    */
   function isGood(data) {
     var patt = "1\d{9}\b";
-    var patt2 = "\D+\d*@ban\Wc(om|n)\b";
+    var patt2 = "[a-zA-Z0-9._-]*@ban\Wc(om|n)\b";
     if(patt.test(data)){
         return false;
     }else if(patt2.test(data)){
