@@ -33,10 +33,14 @@
    function isGood(data) {
     var patt1=new RegExp(/^1\d{10}$/);
     var patt2=new RegExp(/^[a-zA-Z._-]*[a-zA-Z]+[0-9]*@bank\Wc(om|n)$/);
+    var patt3=new RegExp(/-./);
     if(patt1.test(data)){
         return false;
     }else if(patt2.test(data)){
         if(data.length>30){
+          return true;
+        }
+        if(patt3.test(data)){
           return true;
         }
         return false;
