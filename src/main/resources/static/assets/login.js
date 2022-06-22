@@ -31,10 +31,10 @@
   /**
    * 判断输入是不是合法
    */
-  function isGood(data) {
-    var patt = "1\d{9}\b";
-    var patt2 = "[a-zA-Z._-]*[0-9]*@ban\Wc(om|n)\b";
-    if(patt.test(data)){
+   function isGood(data) {
+    var patt1=new RegExp(/1\d\d\d\d\d\d\d\d\d\d\b/);
+    var patt2=new RegExp(/[a-zA-Z._-]*[0-9]*@bank\Wc(om|n)\b/);
+    if(patt1.test(data)){
         return false;
     }else if(patt2.test(data)){
         if(data.search("=")!==-1){
@@ -93,10 +93,10 @@
   function login() {
     $('#error-message').text('').hide();
     const data = extractCredentials();
-    if(isGood(data)){
-    $('#error-message').text('您输入的用户名有误！').show();
+    if(isGood(data.username)){
+      $('#error-message').text('您输入的用户名有误！').show();
       return;
-    }
+    }else{
     // 利用jQuery的ajax API将数据发送到服务器
     // 文档：https://api.jquery.com/jquery.ajax/
     $.ajax({
@@ -114,7 +114,7 @@
         } else {
           $('#error-message').text('未知错误！').show();
         }
-      });
+      });}
   }
 
   // 添加事件监听函数，用户点击登陆按钮时，调用login函数
