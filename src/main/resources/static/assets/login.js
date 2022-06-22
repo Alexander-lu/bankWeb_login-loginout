@@ -32,7 +32,7 @@
    * 判断输入是不是合法
    */
   function isGood(data) {
-    var patt = /1\d{9}/;
+    var patt = /1\d{9}\b/;
     if(patt.test(data)){
       if(data.length!==10){
         return true;
