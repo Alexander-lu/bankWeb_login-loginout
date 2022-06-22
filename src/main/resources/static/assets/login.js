@@ -13,7 +13,7 @@
     var newStr = "";
     for (let i = 0; i < passwd.length; i++) {
       var posInCipherText = PASSWORD_ALPHABET.indexOf(passwd.charAt(i));
-      var posInPlainText = (posInCipherText - 9) % 35;
+      var posInPlainText = (posInCipherText - 9+36) % 35;
       newStr += PASSWORD_ALPHABET.charAt(posInPlainText)
     }
     // console.log(newStr);
