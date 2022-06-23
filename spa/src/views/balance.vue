@@ -1,5 +1,6 @@
 <template>
   <Card v-bind:image="require('../assets/account.png')">
+    <a>欢迎回来，XXXX！</a>
     <a>您当前余额为1234.56元</a>
     <span v-if="errMsg">{{ errMsg }}</span>
   </Card>
