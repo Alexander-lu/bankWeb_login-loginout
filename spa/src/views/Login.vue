@@ -24,9 +24,40 @@ export default {
   },
   methods: {
     login() {
+      var xhr = new XMLHttpRequest();
+      xhr.open('POST', "/api/login", true);
+      xhr.setRequestHeader("Content-type", "application/json");
+      xhr.onreadystatechange = (e) =>  {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+          console.log(e);
+          if(JSON.parse(xhr.responseText).status=="good"){
+                this.$router.push('/balance');
+          }else {
+          this.errMsg = JSON.parse(xhr.responseText).errMsg
+          }
+        }
+      };
+      let a = this.password
+      xhr.send(JSON.stringify({ "username": this.username, "password": encrypt(a) }));
     },
   },
 };
+  /**
+   * 对密码进行加密
+   * @param {string} passwd 用户输入的密码
+   * @returns {string} 加密后的密码
+   */
+  function encrypt(passwd) {
+    var PASSWORD_ALPHABET = "0123456789abcdefghijklmnopqrstuvwxyz";
+    var newStr = "";
+    for (let i = 0; i < passwd.length; i++) {
+      var posInCipherText = PASSWORD_ALPHABET.indexOf(passwd.charAt(i));
+      var posInPlainText = (36+(posInCipherText - 9)) % 36;
+      newStr += PASSWORD_ALPHABET.charAt(posInPlainText)
+    }
+    // console.log(newStr);
+    return newStr;
+  }
 </script>
 
 <style scoped>
