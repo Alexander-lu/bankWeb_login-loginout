@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Login from './views/Login.vue'
 import balance from './views/balance.vue'
-
+import cookies from 'vue-cookies'
 Vue.use(Router)
 export default new Router({
     routes: [
@@ -15,6 +15,13 @@ export default new Router({
             path: '/balance',
             name: 'balance',
             component: balance,
+            beforeEnter: (to,from,next) => {
+                if(cookies.get("session_id")){
+                    next()
+                }else {
+                    next('/login')
+                }
+            }
         },
         {
             path: '*',

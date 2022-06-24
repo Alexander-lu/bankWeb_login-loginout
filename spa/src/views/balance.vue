@@ -16,7 +16,6 @@ export default {
     };
   },
   created(){
-              
                 var xhr = new XMLHttpRequest();
                 xhr.open('GET', "/api/name", true);
                 xhr.setRequestHeader("Content-type", "application/json");
@@ -24,10 +23,7 @@ export default {
                   if (xhr.readyState == 4 && xhr.status == 200) {
                     console.log(e);
                     if(JSON.parse(xhr.responseText).status=="good"){
-                        // console.log(JSON.parse(xhr.responseText).name);
                         this.message=JSON.parse(xhr.responseText).name
-                        // message=JSON.parse(xhr.responseText).name
-                 
                     }
                   }
                 };
@@ -38,8 +34,7 @@ export default {
     Card,
   },
   methods: {
-    login() {
-    },
+  
   },
 };
 </script>
