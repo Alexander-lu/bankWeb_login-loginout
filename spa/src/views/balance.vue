@@ -1,13 +1,14 @@
 <template>
   <Card v-bind:image="require('../assets/account.png')">
-   <p >欢迎回来，{{ message }}！</p>
-    <a>您当前余额为1234.56元</a>
+  <p >欢迎回来，{{ message }}！</p>
+  <a>您当前余额为1234.56元</a>
+  <input type="submit" value="退出登陆" @click="loginout" />
   </Card>
 </template>
 
 <script>
 import Card from "../components/Card.vue";
-
+import cookies from 'vue-cookies'
 export default {
   name: "balance",
   data() {
@@ -34,7 +35,10 @@ export default {
     Card,
   },
   methods: {
-  
+  loginout(){
+    cookies.remove("session_id");
+    this.$router.push('/Login');
+  }
   },
 };
 </script>
