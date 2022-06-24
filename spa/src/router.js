@@ -4,7 +4,6 @@ import Login from './views/Login.vue'
 import balance from './views/balance.vue'
 
 Vue.use(Router)
-
 export default new Router({
     routes: [
         {
@@ -15,7 +14,7 @@ export default new Router({
         {
             path: '/balance',
             name: 'balance',
-            component: balance,   // `/login`路径访问balance组件
+            component: balance,
         },
         {
             path: '*',

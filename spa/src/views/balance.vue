@@ -1,8 +1,7 @@
 <template>
   <Card v-bind:image="require('../assets/account.png')">
-    <a>欢迎回来，XXXX！</a>
+   <p >欢迎回来，{{ message }}！</p>
     <a>您当前余额为1234.56元</a>
-    <span v-if="errMsg">{{ errMsg }}</span>
   </Card>
 </template>
 
@@ -10,14 +9,31 @@
 import Card from "../components/Card.vue";
 
 export default {
-  name: "Login",
+  name: "balance",
   data() {
     return {
-      username: "",
-      password: "",
-      errMsg: ""
+      message: "",
     };
   },
+  created(){
+              
+                var xhr = new XMLHttpRequest();
+                xhr.open('GET', "/api/name", true);
+                xhr.setRequestHeader("Content-type", "application/json");
+                xhr.onreadystatechange = (e) =>  {
+                  if (xhr.readyState == 4 && xhr.status == 200) {
+                    console.log(e);
+                    if(JSON.parse(xhr.responseText).status=="good"){
+                        // console.log(JSON.parse(xhr.responseText).name);
+                        this.message=JSON.parse(xhr.responseText).name
+                        // message=JSON.parse(xhr.responseText).name
+                 
+                    }
+                  }
+                };
+                xhr.send();
+  }
+  ,
   components: {
     Card,
   },
